@@ -691,9 +691,12 @@ if ! [ "$myTPOT_DEPLOYMENT_TYPE" == "iso" ];
     fuBANNER "Cloning T-Pot"
     # git clone https://github.com/telekom-security/tpotce /opt/tpot
     # clone my custom fork and switch to the branch on which I made changes
-    git clone https://github.com/ezacl/tpotce-light /opt/tpot
-    cd /opt/tpot/
-    git checkout slim-standard
+    # git clone https://github.com/ezacl/tpotce-light /opt/tpot
+    # cd /opt/tpot/
+    # git checkout slim-standard
+
+    # copy cloned repo into /opt/tpot location
+    cp -r /root/tpotce-light/ /opt/tpot/
 fi
 
 # Let's create the T-Pot user
@@ -819,6 +822,9 @@ fuBANNER "Copy configs"
 tar xvfz /opt/tpot/etc/objects/elkbase.tgz -C /
 cp /opt/tpot/host/etc/systemd/* /etc/systemd/system/
 systemctl enable tpot
+
+# copy nice vimrc
+cp /opt/tpot/.vimrc /root/.vimrc
 
 # Let's take care of some files and permissions
 fuBANNER "Permissions"
