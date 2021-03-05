@@ -685,10 +685,12 @@ npm install elasticdump -g
 pip3 install elasticsearch-curator yq
 hash -r
 
+# Don't clone T-Pot from GitHub assuming that it has already been cloned into /opt/tpot
+
 # Cloning T-Pot from GitHub
-if ! [ "$myTPOT_DEPLOYMENT_TYPE" == "iso" ];
-  then
-    fuBANNER "Cloning T-Pot"
+# if ! [ "$myTPOT_DEPLOYMENT_TYPE" == "iso" ];
+#   then
+#     fuBANNER "Cloning T-Pot"
     # git clone https://github.com/telekom-security/tpotce /opt/tpot
     # clone my custom fork and switch to the branch on which I made changes
     # git clone https://github.com/ezacl/tpotce-light /opt/tpot
@@ -696,8 +698,8 @@ if ! [ "$myTPOT_DEPLOYMENT_TYPE" == "iso" ];
     # git checkout slim-standard
 
     # copy cloned repo into /opt/tpot location
-    cp -r /root/tpotce-light/ /opt/tpot/
-fi
+    # cp -r /root/tpotce-light/ /opt/tpot/
+# fi
 
 # Let's create the T-Pot user
 fuBANNER "Create user"
