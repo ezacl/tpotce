@@ -828,6 +828,11 @@ systemctl enable tpot
 # copy nice vimrc
 cp /opt/tpot/.vimrc /root/.vimrc
 
+# copy original logstash.conf to /data/elk/, which is where sensor.yml says to look
+# for a volume (look at last line of sensor.yml) (this will normally get overwritten
+# with custom logstash.conf by fabfile)
+cp /opt/tpot/docker/elk/logstash/dist/logstash.conf /data/elk/logstash.conf
+
 # Let's take care of some files and permissions
 fuBANNER "Permissions"
 chmod 770 -R /data

@@ -1,3 +1,5 @@
+" simple, pluginless .vimrc with some goodies to make editing files easier
+
 set nocompatible
 syntax enable
 
@@ -47,6 +49,9 @@ nnoremap <leader>b :ls<CR>:b<Space>
 nnoremap <silent> <leader>n :nohlsearch<CR>
 " turn off highlighting after pressing enter on search
 cnoremap <expr> <silent> <cr> getcmdtype() =~ '[?/]' ? "\<cr>:noh\<cr>" : "\<cr>"
+" be able to repeat indents on visual selections
+xnoremap <  <gv
+xnoremap >  >gv
 
 " autocomplete bracket pairs
 inoremap ( ()<Left>
@@ -66,8 +71,6 @@ highlight Normal ctermfg=white ctermbg=black
 highlight Search ctermbg=darkblue ctermfg=white
 
 " ----------------- Simple autocompletion configuration ----------------------
-
-au BufEnter * :ApcEnable
 
 let g:apc_enable_ft = {'*': 1}
 
@@ -216,9 +219,14 @@ endfunc
 
 " check if need to be enabled
 function! s:apc_check_init()
-	if &bt == '' && get(g:apc_enable_ft, &ft, 0) != 0
+	if &bt != ''
+		return
+	endif
+	if get(g:apc_enable_ft, &ft, 0) != 0
 		ApcEnable
-	elseif &bt == '' && get(g:apc_enable_ft, '*', 0) != 0
+	elseif get(g:apc_enable_ft, '*', 0) != 0
+		ApcEnable
+	elseif get(b:, 'apc_enable', 0)
 		ApcEnable
 	endif
 endfunc
@@ -230,4 +238,5 @@ command! -nargs=0 ApcDisable call s:apc_disable()
 augroup ApcInitGroup
 	au!
 	au FileType * call s:apc_check_init()
+	au BufEnter * call s:apc_check_init()
 augroup END

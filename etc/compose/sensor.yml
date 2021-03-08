@@ -481,3 +481,4 @@ services:
     image: "dtagdevsec/logstash:2006"
     volumes:
      - /data:/data
+     - /data/elk/logstash.conf:/etc/logstash/conf.d/logstash.conf
