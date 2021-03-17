@@ -685,12 +685,7 @@ npm install elasticdump -g
 pip3 install elasticsearch-curator yq
 hash -r
 
-# Cloning T-Pot from GitHub
-if ! [ "$myTPOT_DEPLOYMENT_TYPE" == "iso" ];
-  then
-    fuBANNER "Cloning T-Pot"
-    git clone https://github.com/telekom-security/tpotce /opt/tpot
-fi
+# Don't clone T-Pot from GitHub assuming that it has already been cloned into /opt/tpot
 
 # Let's create the T-Pot user
 fuBANNER "Create user"
@@ -815,6 +810,11 @@ fuBANNER "Copy configs"
 tar xvfz /opt/tpot/etc/objects/elkbase.tgz -C /
 cp /opt/tpot/host/etc/systemd/* /etc/systemd/system/
 systemctl enable tpot
+
+# copy original logstash.conf to /data/elk/, which is where sensor.yml says to look
+# for a volume (look at last line of sensor.yml) (this will normally get overwritten
+# with custom logstash.conf by fabfile)
+cp /opt/tpot/docker/elk/logstash/dist/logstash.conf /data/elk/logstash.conf
 
 # Let's take care of some files and permissions
 fuBANNER "Permissions"
