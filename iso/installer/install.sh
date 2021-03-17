@@ -687,20 +687,6 @@ hash -r
 
 # Don't clone T-Pot from GitHub assuming that it has already been cloned into /opt/tpot
 
-# Cloning T-Pot from GitHub
-# if ! [ "$myTPOT_DEPLOYMENT_TYPE" == "iso" ];
-#   then
-#     fuBANNER "Cloning T-Pot"
-    # git clone https://github.com/telekom-security/tpotce /opt/tpot
-    # clone my custom fork and switch to the branch on which I made changes
-    # git clone https://github.com/ezacl/tpotce-light /opt/tpot
-    # cd /opt/tpot/
-    # git checkout slim-standard
-
-    # copy cloned repo into /opt/tpot location
-    # cp -r /root/tpotce-light/ /opt/tpot/
-# fi
-
 # Let's create the T-Pot user
 fuBANNER "Create user"
 addgroup --gid 2000 tpot
@@ -824,9 +810,6 @@ fuBANNER "Copy configs"
 tar xvfz /opt/tpot/etc/objects/elkbase.tgz -C /
 cp /opt/tpot/host/etc/systemd/* /etc/systemd/system/
 systemctl enable tpot
-
-# copy nice vimrc
-cp /opt/tpot/.vimrc /root/.vimrc
 
 # copy original logstash.conf to /data/elk/, which is where sensor.yml says to look
 # for a volume (look at last line of sensor.yml) (this will normally get overwritten
