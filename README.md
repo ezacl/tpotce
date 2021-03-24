@@ -1,3 +1,11 @@
+# PLEASE NOTE:
+
+This fork has been specifically created to work with [this repository](https://github.com/ezacl/deploy-t-pot),
+which completely automates the deployment of a distributed (multi-server) T-Pot network. Installing this fork
+of T-Pot on its own will most likely leave you with a non-working installation.
+
+-----------------------------------------------
+
 ![T-Pot](doc/tpotsocial.png)
 
 T-Pot 20.06 runs on Debian (Stable), is based heavily on
@@ -198,7 +206,7 @@ For transparency reasons and to give you the ability to customize your install y
 
 **Requirements to create the ISO image:**
 - Debian 10 as host system (others *may* work, but *remain* untested)
-- 4GB of free memory  
+- 4GB of free memory
 - 32GB of free storage
 - A working internet connection
 
@@ -279,15 +287,15 @@ The installer will start automatically and guide you through the install process
 
 <a name="cloud"></a>
 ## Cloud Deployments
-Located in the [`cloud`](cloud) folder.  
-Currently there are examples with Ansible & Terraform.  
+Located in the [`cloud`](cloud) folder.
+Currently there are examples with Ansible & Terraform.
 If you would like to contribute, you can add other cloud deployments like Chef or Puppet or extend current methods with other cloud providers.
 
 *Please note*: Cloud providers usually offer adjusted Debian OS images, which might not be compatible with T-Pot. There is no cloud provider support provided of any kind.
 
 <a name="ansible"></a>
 ### Ansible Deployment
-You can find an [Ansible](https://www.ansible.com/) based T-Pot deployment in the [`cloud/ansible`](cloud/ansible) folder.  
+You can find an [Ansible](https://www.ansible.com/) based T-Pot deployment in the [`cloud/ansible`](cloud/ansible) folder.
 The Playbook in the [`cloud/ansible/openstack`](cloud/ansible/openstack) folder is reusable for all **OpenStack** clouds out of the box.
 
 It first creates all resources (security group, network, subnet, router), deploys one (or more) new servers and then installs and configures T-Pot on them.
@@ -303,7 +311,7 @@ You can find [Terraform](https://www.terraform.io/) configuration in the [`cloud
 
 This can be used to launch a virtual machine, bootstrap any dependencies and install T-Pot in a single step.
 
-Configuration for **Amazon Web Services** (AWS) and **Open Telekom Cloud** (OTC) is currently included.  
+Configuration for **Amazon Web Services** (AWS) and **Open Telekom Cloud** (OTC) is currently included.
 This can easily be extended to support other [Terraform providers](https://registry.terraform.io/browse/providers?category=public-cloud%2Ccloud-automation%2Cinfrastructure).
 
 *Please note*: Cloud providers usually offer adjusted Debian OS images, which might not be compatible with T-Pot. There is no cloud provider support provided of any kind.
@@ -363,7 +371,7 @@ cd /opt/tpot/
 ./update.sh
 ```
 
-**Despite all testing efforts please be reminded that updates sometimes may have unforeseen consequences. Please create a backup of the machine or the files with the most value to your work.**  
+**Despite all testing efforts please be reminded that updates sometimes may have unforeseen consequences. Please create a backup of the machine or the files with the most value to your work.**
 
 <a name="options"></a>
 # Options
@@ -384,7 +392,7 @@ You can also add two factor authentication to Cockpit just by running `2fa.sh` o
 ![Cockpit Terminal](doc/cockpit3.png)
 
 <a name="heimdall"></a>
-## T-Pot Landing Page 
+## T-Pot Landing Page
 Just open a web browser and connect to `https://<your.ip>:64297`, enter
 
 - user: **[user]** *you chose during the installation*
@@ -420,7 +428,7 @@ T-Pot is designed to be low maintenance. Basically, there is nothing you have to
 
 If you run into any problems, a reboot may fix it :bowtie:
 
-If new versions of the components involved appear new docker images will be created and distributed. New images will be available from docker hub and downloaded automatically to T-Pot and activated accordingly.  
+If new versions of the components involved appear new docker images will be created and distributed. New images will be available from docker hub and downloaded automatically to T-Pot and activated accordingly.
 
 <a name="submission"></a>
 ## Community Data Submission
@@ -449,13 +457,13 @@ It is encouraged not to disable the data submission as it is the main purpose of
 
 <a name="hpfeeds-optin"></a>
 ## Opt-In HPFEEDS Data Submission
-As an Opt-In it is now possible to also share T-Pot data with 3rd party HPFEEDS brokers.  
+As an Opt-In it is now possible to also share T-Pot data with 3rd party HPFEEDS brokers.
 If you want to share your T-Pot data you simply have to register an account with a 3rd party broker with its own benefits towards the community. You simply run `hpfeeds_optin.sh` which will ask for your credentials. It will automatically update `/opt/tpot/etc/tpot.yml` to deliver events to your desired broker.
 
 The script can accept a config file as an argument, e.g. `./hpfeeds_optin.sh --conf=hpfeeds.cfg`
 
-Your current config will also be stored in `/data/ews/conf/hpfeeds.cfg` where you can review or change it.  
-Be sure to apply any changes by running `./hpfeeds_optin.sh --conf=/data/ews/conf/hpfeeds.cfg`.  
+Your current config will also be stored in `/data/ews/conf/hpfeeds.cfg` where you can review or change it.
+Be sure to apply any changes by running `./hpfeeds_optin.sh --conf=/data/ews/conf/hpfeeds.cfg`.
 No worries: Your old config gets backed up in `/data/ews/conf/hpfeeds.cfg.old`
 
 Of course you can also rerun the `hpfeeds_optin.sh` script to change and apply your settings interactively.
